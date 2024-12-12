@@ -52,3 +52,11 @@ def add_post(title, text, author_id) -> int:
         session.commit()
         session.refresh(post)
         return post.id
+    
+
+def edit_post(id, title, text) -> None:
+    with Session() as session:
+        post = session.query(Post).where(Post.id == id).first()
+        post.title = title
+        post.text = text
+        session.commit()

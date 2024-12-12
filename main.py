@@ -36,6 +36,30 @@ def add_author():
     return render_template("add_author.html")
 
 
+@app.get("/delete/post/<int:id>/")
+def delete_post(id):
+    db_action.delete_post(id)
+    return redirect(url_for("index"))
+
+
+@app.route("/edit/post/<int:id>/", methods=["GET", "POST"])
+def edit_post(id):
+    if request.method == "POST":
+        title = request.form.get("title")
+        text = request.form.get("text")
+        db_action.edit_post(id, title, text)
+        return redirect(url_for("index"))
+
+    post = db_action.get_post(id)
+    return render_template("edit_post.html", post=post)
+
+
+@app.get("/post/<int:id>/")
+def get_post(id):
+    with Session() as session:
+        post = session.query(Post).where(Post.id == id).first()
+        return render_template("post.html", post=post)
+
 
 if __name__ == "__main__":
     create_db()

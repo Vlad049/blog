@@ -2,14 +2,15 @@
 
 {%block center%}
 <form action="{{ url_for('add_author') }}" method="post">
-    <div class="form-group">
-        <label>Ім'я та призвіще автора</label>
+    <div class="form-group" class="background">
+        <label>Ім'я та призвіще кухаря</label>
         <input type="text" name="name" class="form-control">
     </div>
     <div class="form-group">
-        <label>Країна проживання автора</label>
+        <label>Країна проживання кухаря</label>
         <input type="text" name="country" class="form-control">
     </div>
-    <button type="submit" class="btn btn-success">Додати автора</button>
+    <br>
+    <button type="submit" class="btn btn-success">Додати кухаря</button>
 </form>
 {%endblock center%}
